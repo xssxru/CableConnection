@@ -1,3 +1,4 @@
+import os
 import app_database
 import customtkinter
 
@@ -22,8 +23,15 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title(app_database.metadata['name'])
-        self.geometry("500x250")
-        self.minsize(500, 250)
+        self.iconbitmap('lan.ico')
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        x = int(screen_width / 2 - app_database.window_app_size['width'] / 2)
+        y = int(screen_height / 2 - app_database.window_app_size['height'] / 2)
+        self.geometry(f'{app_database.window_app_size['width']}x{app_database.window_app_size['height']}+{x}+{y}')
+        # self.geometry('800x400')
+        self.minsize(app_database.window_app_size['width'], app_database.window_app_size['height'])
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
