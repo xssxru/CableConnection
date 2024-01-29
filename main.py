@@ -5,17 +5,29 @@ import customtkinter
 customtkinter.set_appearance_mode("dark")
 
 
+def button_callback():
+    print("action complete")
+
+
+def button_nextframe():
+    print("second action")
+
 class HomeFrame(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
-        self.button_solving = customtkinter.CTkButton(self, text='Solving', command=self.button_callback)
+        self.button_solving = customtkinter.CTkButton(self, text='Solving', command=button_callback)
         self.button_solving.grid(row=0, column=0, padx=20, pady=5)
-        self.button_tutorial = customtkinter.CTkButton(self, text='Tutorial', command=self.button_callback)
+        self.button_tutorial = customtkinter.CTkButton(self, text='Tutorial', command=button_callback)
         self.button_tutorial.grid(row=1, column=0, padx=20, pady=5)
 
-    def button_callback(self):
-        print("action complete")
+
+class NextFrame(customtkinter.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
+
+        self.button_work = customtkinter.CTkButton(self, text="It's work!", command=button_callback)
+        self.button_work.grid(row=0, column=0, padx=20, pady=5)
 
 
 class App(customtkinter.CTk):
@@ -38,11 +50,12 @@ class App(customtkinter.CTk):
         self.app_label_name = customtkinter.CTkLabel(self, text=app_database.metadata['name'], font=('Segoe UI', 20))
         self.app_label_name.grid(row=0, column=0, padx=10, pady=10)
 
-        self.home_frame = HomeFrame(self)
-        self.home_frame.grid(row=1, column=0, padx=10, pady=10)
+        self.frame = HomeFrame(self)
+        self.frame.grid(row=1, column=0, padx=10, pady=10)
         # self.home_frame.configure(fg_color='transparent')
 
-        self.app_label_version = customtkinter.CTkLabel(self, text=app_database.metadata['version'], font=('Segoe UI', 10))
+        self.app_label_version = customtkinter.CTkLabel(self, text=app_database.metadata['version'],
+                                                        font=('Segoe UI', 10))
         self.app_label_version.grid(row=2, column=0, padx=1, pady=1)
 
 
